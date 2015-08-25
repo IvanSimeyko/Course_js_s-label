@@ -44,14 +44,22 @@ var app = function(arg) {
 };
 
 // Решение домашки
-background = {
-    background: function(color) {
-        if(color) {
-            return ( color );
-        } else {
-            return ('pink');
-        }
+// Прототип объектов
+var proto = {
+    background: 'pink',
+
+    render: function() {
+        console.log('Выводим фигуру на страницу');
+        this.updateStyle();
+        document.body.appendChild(this.element);
     },
+
+    changeColor: function(color) {
+       console.log('Меняем цвет у фигуры');
+       this.element.style.background = color;
+        //this.updateStyle();
+    },
+
     move: function(where) {
         console.log('Перемещаем фигуру');
         var tempSize = 0;
@@ -77,6 +85,7 @@ background = {
             tempSize = tempSize + 100;
             this.element.style.left = tempSize + 'px';
         }
+        //this.updateStyle();
     }
 };
 
@@ -84,33 +93,29 @@ background = {
 function Square() {
     this.width = '100px';
     this.height = '100px';
-    this.color = 'red';
+    //this.color = 'red';
     this.position = 'absolute';
     this.top = '50px';
     this.left = '450px';
     this.element = document.createElement('div');
-    //this.text = 'This is, square!';
 
-    this.render = function () {
+    this.updateStyle = function () {
         var squareDiv = this.element;
 
         squareDiv.style.width = this.width;
         squareDiv.style.height = this.height;
-        squareDiv.style.background = this.background();
+        squareDiv.style.background = this.background;
         squareDiv.style.color = this.color;
         squareDiv.style.position = this.position;
         squareDiv.style.top = this.top;
         squareDiv.style.left = this.left;
 
-       // squareDiv.innerHTML = this.color;
-        console.log('Выводим квадрат на страницу');
-        console.log( squareDiv );
-        document.body.appendChild(squareDiv)
+       document.body.appendChild(squareDiv)
     };
 }
 
 // Назначаем прототип
-Square.prototype = background;
+Square.prototype = proto;
 
 //Конструктор объекта круг
 function Circle() {
@@ -123,36 +128,48 @@ function Circle() {
     this.id = 'circle';
     this.element = document.createElement( 'div' );
 
-    this.render = function() {
+    this.updateStyle = function() {
         var circleDiv = this.element;
 
         circleDiv.style.width = this.width;
         circleDiv.style.height = this.height;
-        circleDiv.style.background = this.background();
+        circleDiv.style.background = this.background;
         circleDiv.style.borderRadius = this.border;
         circleDiv.style.position = this.position;
         circleDiv.style.top = this.top;
         circleDiv.style.left = this.left;
         circleDiv.style.id= this.id;
 
-        console.log('Выводим круг на страницу');
-        console.log(circleDiv);
         document.body.appendChild(circleDiv)
     };
 }
 
+function changeColorForAll(color) {
+    console.log('меняем цвет у двух фигур');
+
+    shapes.forEach(function (shape) {
+        shape.changeColor(color);
+    });
+}
+
 //Назначаем прототип
-Circle.prototype = background;
+Circle.prototype = proto;
 
 //Создаем объекты
 var square = new Square();
 var circle = new Circle();
+var shapes = [square, circle];
+
 square.render();
 circle.render();
+
 circle.move('down');
 square.move('down');
 
+square.changeColor('red');
+circle.changeColor('red');
 
+changeColorForAll('black');
 /*
 //Анимация и таймеры (разбор темы)
 var delay = 1000;
@@ -174,17 +191,3 @@ var timer = setTimeout(startTimer, delay); //вызываем функцию, 30
 
 */
 
-/*
-// Создаем объект в JS, который описывает в HTML квадрат
-var squareDiv = document.createElement("div");
-squareDiv.style.width = '100px';
-squareDiv.style.height = '100px';
-squareDiv.style.background = 'grey';
-squareDiv.style.color = 'white';
-squareDiv.innerHTML = 'Helllo';
-
-// Создаем объект в JS, который описывает в HTML круг
-// Этот вариант предпочтительней чем прошлый
-var circleDiv = document.createElement('div')   // создаем узел элемента
-circleDiv.className = 'circle';
-*/
