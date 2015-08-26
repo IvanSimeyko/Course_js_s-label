@@ -42,11 +42,16 @@ var proto = {
         }
     },
 
-    run: function() {
-        var startTimer = this.move('down');
-        console.log( 'функция StartTimer сработала');
+    run: function(where) {
+        var delay = 1000;
+        var i = 0;
 
-        setTimeout(startTimer, 1000);
+        while (i < 10) {
+        var startTimer = this.move(where);
+        setTimeout(startTimer, 10000);
+        console.log( 'Фигуоа убежала ' + i + ' раз' );
+        i++;
+        }
     }
 };
 
@@ -133,7 +138,7 @@ square.changeColor('red');
 
 changeColorForAll('black');
 
-square.run();
+square.run('down');
 
 
 /*
