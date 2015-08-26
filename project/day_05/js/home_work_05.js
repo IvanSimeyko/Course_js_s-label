@@ -43,13 +43,16 @@ var proto = {
     },
 
     run: function(where) {
-        var delay = 1000;
+        var delay = 3000;
         var i = 0;
 
-        while (i < 10) {
         var startTimer = this.move(where);
-        setTimeout(startTimer, 10000);
-        console.log( 'Фигуоа убежала ' + i + ' раз' );
+        while (i < 10) {
+            setTimeout(function() {
+                startTimer();
+        }, delay);
+
+        console.log( 'Фигура передвинлась ' + i + ' раз' );
         i++;
         }
     }
