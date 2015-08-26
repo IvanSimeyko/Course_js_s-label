@@ -6,7 +6,7 @@ var proto = {
     render: function() {
         console.log('Выводим фигуру на страницу');
         this.updateStyle();
-        document.body.appendChild(this.element);
+        //document.body.appendChild(this.element);
     },
 
     changeColor: function(color) {
@@ -40,6 +40,13 @@ var proto = {
             tempSize = tempSize + 100;
             this.element.style.left = tempSize + 'px';
         }
+    },
+
+    run: function() {
+        var startTimer = this.move('down');
+        console.log( 'функция StartTimer сработала');
+
+        setTimeout(startTimer, 1000);
     }
 };
 
@@ -99,7 +106,7 @@ function Circle() {
 }
 
 function changeColorForAll(color) {
-    console.log('меняем цвет у двух фигур');
+    console.log('меняем цвет у всех фигур');
 
     shapes.forEach(function (shape) {
         shape.changeColor(color);
@@ -114,16 +121,21 @@ var square = new Square();
 var circle = new Circle();
 var shapes = [square, circle];
 
-square.render();
+
 circle.render();
+square.render();
 
 circle.move('down');
 square.move('down');
 
-square.changeColor('red');
 circle.changeColor('red');
+square.changeColor('red');
 
 changeColorForAll('black');
+
+square.run();
+
+
 /*
 //Анимация и таймеры (разбор темы)
 var delay = 1000;
