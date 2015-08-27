@@ -42,19 +42,23 @@ var proto = {
         }
     },
 
-    run: function(where) {
-        var delay = 3000;
-        var i = 0;
+    run: function (where) {
+       var delay = 3000;
+       var i = 0;
+       var obj = this;
 
-        var startTimer = this.move(where);
-        while (i < 10) {
-            setTimeout(function() {
-                startTimer();
-        }, delay);
+       function startTimer() {
+           setTimeout(handleTimeout, delay);
+       }
 
-        console.log( 'Фигура передвинлась ' + i + ' раз' );
-        i++;
-        }
+       function handleTimeout() {
+           obj.move(where);
+           i++;
+           console.log('Фигура передвинлась ' + i + ' раз');
+           if (i < 10) startTimer();
+       }
+
+       startTimer();
     }
 };
 
@@ -133,15 +137,15 @@ var shapes = [square, circle];
 circle.render();
 square.render();
 
-circle.move('down');
-square.move('down');
+circle.move('right');
+square.move('left');
 
-circle.changeColor('red');
-square.changeColor('red');
+//circle.changeColor('red');
+//square.changeColor('red');
 
-changeColorForAll('black');
+//changeColorForAll('black');
 
-square.run('down');
+square.run('right');
 
 
 /*
