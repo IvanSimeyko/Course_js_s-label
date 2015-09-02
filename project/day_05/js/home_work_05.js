@@ -62,6 +62,31 @@ var proto = {
     }
 };
 
+// Конструтор объекта треугольник
+function Triangle() {
+    this.width = '0';
+    this.height = '0';
+    this.borderLeft = '50px solid transparent';
+    this.borderRight = '50px solid transparent';
+    this.borderTop = '100px solid red';
+    this.element = document.createElement('div');
+
+    this.updateStyle = function () {
+        var triangleDiv = this.element;
+
+        triangleDiv.style.width = this.width;
+        triangleDiv.style.height = this.height;
+        triangleDiv.style.borderLeft = this.borderLeft;
+        triangleDiv.style.borderRight = this.borderRight;
+        triangleDiv.style.borderTop = this.borderTop;
+
+        document.body.appendChild(triangleDiv)
+    };
+}
+
+// Назначаем прототип
+Triangle.prototype = proto;
+
 // Конструктоор объекта квадрат
 function Square() {
     this.width = '100px';
@@ -132,20 +157,23 @@ Circle.prototype = proto;
 var square = new Square();
 var circle = new Circle();
 var shapes = [square, circle];
-
+var triangle = new Triangle();
 
 circle.render();
 square.render();
+triangle.render();
 
 circle.move('right');
 square.move('left');
 
-//circle.changeColor('red');
-//square.changeColor('red');
+circle.changeColor('red');
+square.changeColor('red');
 
-//changeColorForAll('black');
+changeColorForAll('black');
 
 square.run('right');
+circle.run('right');
+triangle.run('right');
 
 
 /*
