@@ -37,7 +37,7 @@ var authorApi = (function () {
 		spanSurname.innerHTML = element.surname + '  ';
 		removeButton.innerHTML = 'delete author';
         // Вешаем на кнопочку событие
-		removeButton.addEventListener('click', removeAuthor.bind(null, element, index, liObj));
+		removeButton.addEventListener('click', removeAuthor.bind(null, index, liObj));
         // Добавлем автора в документ
         liObj.appendChild( spanName );
 		liObj.appendChild( spanSurname );
@@ -47,13 +47,14 @@ var authorApi = (function () {
     }
 
     //Пишем функцию, которая будет удалять нашего автора!!!
-    function removeAuthor(author, index, authorLi) {
-		author.splice(author.indexOf(author), 1);
+    function removeAuthor(index, authorLi) {
+		console.log(typeof (author));
+                author.splice(index, 1);
 		authorLi.parentNode.removeChild(authorLi);
         console.log('Удаляем элемент')
 	}
 
-    // Создаем функцию для созжания элемента формы input
+    // Создаем функцию для создания элемента формы input
     function createInput(name, conteiner) {
 		var input = document.createElement('input');
 		input.setAttribute('type', 'text');
@@ -79,15 +80,22 @@ var authorApi = (function () {
         // добавляем форму на страницу
 		document.body.appendChild(formAuthor);
 
-        // Пишем как будут обрабатывться введенные в форму значения
+        // Добавим функцию для сброса полей
+        function reset() {
+            nameInput.value = '';
+            surnameInput.value = '';
+        }
+
+        // Пишем как будут обрабатываться введенные в форму значения
         formAuthor.addEventListener('submit', function (event) {
 			var newAuthor = new Author(nameInput.value, surnameInput.value);
+            console.log('var newAuthor = ', newAuthor);
+            console.log('type newAuthor= ', typeof 'newAuthor');
 			renderAuthor(newAuthor);
-			author.push(newAuthor);
-
+			author.push(newAuthor); // добавил в конец массива автоор объект newAuthor
+            console.log(author);
 			reset();
-
-			event.preventDefault();
+			event.preventDefault(); // отмена действия браузера по умолчанию (отправка формы на сервер)
 		});
     document.body.appendChild(ulObj);
 })();
