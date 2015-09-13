@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple TodoList</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style>
+    .container {
+      padding-top: 100px;
+    }
+    .selected {
+      font-weight: bold;
+    }
+    .filter {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-md-4  col-md-offset-4">
+        <form class="header">
+          <h1 class="text-center">todos</h1>
+          <input type="text" class="form-control" placeholder="What needs to be done?" autofocus>
+        </form>
+        <div class="main">
+          <ul class="list list-unstyled">
+          	<li>
+          		<label for="a1">
+          			<input id="a1" type="checkbox">
+          			Задача 1
+          		</label>
+          	</li>
+          	
+          </ul>
+        </div>
+        <div class="footer">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox">Make all as complited
+            </label>
+          </div>
+          <div>
+            <span class="todo-count"></span>
+            <ul class="filter list-unstyled list-inline">
+              <li>
+                <a href="#/" class="selected">Все</a>
+              </li>
+              <li>
+                <a href="#/active" >Не завершенные</a>
+              </li>
+              <li>
+                <a href="#/complited">Завершенные</a>
+              </li>
+            </ul>
+            <button class="clear-complited btn btn-info btn-xs pull-right">Очистить завершенные</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-1 col-md-4"></div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="js/home_work.js"></script>
+</body>
+</html>
