@@ -43,5 +43,17 @@ $(document).ready(function () {
         });
     });
 
+    //обработка клика на "не завершенные"
+    $("a[href$='active']").click(function(e) {    // находим ссылку "не завершенные" и ставим
+        console.log( 'was click on "Не завершенные"');      //   на нее событие
 
+        e.preventDefault();
+
+        $('input[type="checkbox"]:checked').each(function(index, element) {    // выполняем обход всех инпутов
+                                                                                    //  и выполняем для каждого из
+                                                                                    // них функцию function
+        $(element).closest('li').hide();   // ищем ближайшую лишку и прячем ее
+
+        });
+    });
 });
