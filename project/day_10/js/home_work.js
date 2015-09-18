@@ -28,7 +28,7 @@ $(document).ready(function () {
         $('input[type="checkbox"]:not(:checked)').each(function(index, element) {    // выполняем обход всех инпутов
                                                                                     // выполняем для каждого из
                                                                                     // них функцию function
-        $(element).closest('li').hide();   // ищем ближайшую лишку и прячем ее
+            $(element).closest('li').hide();   // ищем ближайшую лишку и прячем ее
        });
     });
 
@@ -52,8 +52,29 @@ $(document).ready(function () {
         $('input[type="checkbox"]:checked').each(function(index, element) {    // выполняем обход всех инпутов
                                                                                     //  и выполняем для каждого из
                                                                                     // них функцию function
-        $(element).closest('li').hide();   // ищем ближайшую лишку и прячем ее
+            $(element).closest('li').hide();   // ищем ближайшую лишку и прячем ее
 
         });
     });
+
+    //выделение всех задач
+    $('input[type="checkbox"]:last').change(function(e) {
+        console.log( 'was change');
+        e.preventDefault();
+
+        $('input[type="checkbox"]:not(:checked)').each(function(index, element) {
+            $(element).attr('checked', true);
+            // доделать немного
+       });
+    });
+
+    // удаление завершенных задач
+    $( ":button" ).click(function (e) {
+        console.log( 'was click in button' );
+        e.preventDefault();
+
+        $('input[type="checkbox"]:not(:checked)').each(function(index, element) {
+            $(element).closest('li').remove();
+        }) ;
+    })
 });
