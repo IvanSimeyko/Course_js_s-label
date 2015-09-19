@@ -73,7 +73,7 @@ $(document).ready(function () {
         console.log( 'was click in button' );
         e.preventDefault();
 
-        $('input[type="checkbox"]:not(:checked)').each(function(index, element) {
+        $('input:checked').each(function(index, element) {
             $(element).closest('li').remove();
         }) ;
     })
