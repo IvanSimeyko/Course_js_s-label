@@ -1,16 +1,11 @@
-require.config({
-    baseUrl: 'js/',
-    path: {
-        jquery: 'jquery-2.1.4.min'
-    }
+define( "unit",
+        ['jQuery'],
+        function( jQuery ){
+          return { foo : "bar" };
+        }
+);
+
+//загрузка модуля
+require(["util"], function(util) {
+    alert("это выполнится только тогда, когда файл util.js будет загружен");
 });
-
-require(['jquery'], function(){
-    $('body').css({background: '#23232'})
-});
-
-define('hello', ['jquery'], function(jq){
-
-});
-
-require(['hello'])
