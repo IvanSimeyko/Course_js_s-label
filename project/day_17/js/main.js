@@ -1,11 +1,17 @@
-define( "unit",
-        ['jQuery'],
-        function( jQuery ){
-          return { foo : "bar" };
-        }
-);
+systemJs.define( 'main', function() {
 
-//загрузка модуля
-require(["util"], function(util) {
-    alert("это выполнится только тогда, когда файл util.js будет загружен");
+    var timer = systemJs.require("timer");
+
+    function _render() {
+        var text = timer.now();
+        document.body.innerHTML = text;
+    }
+
+    return{
+        init: function(){
+            setInterval(_render,1000);
+        }
+    }
 });
+main.init();sd
+d
