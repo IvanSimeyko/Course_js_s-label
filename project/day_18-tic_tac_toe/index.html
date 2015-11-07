@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = 'utf-8'>
+    <link rel="stylesheet" type="text/css" href = 'css/gamestyle.css'>
+    <script type = 'text/javascript' src = 'js/gamescript.js'>
+        function clkGameButton(){    //событе начала новой игры
+            if (isNan(frng.nCell.value)) {    //проверка правильности ввода
+                alert('Введите число клеток');
+                return
+            }
+            var n = parseInt(frng.nCell.value);
+            createField(n, n);
+            gamegameinfo.innerText = 'Начало игрыю Всего точек '
+            + nMaxPoint
+            + '\nМинимальная вероятность победы: '
+            + Math.round(nMaxPoint/(n*n)*100) + '%';
+        }
+
+        function initGame() {    //инициализация игры
+            gTexts['win1']='Победил "'; gTexts['win2']='" !'; // настроцка текста
+            gTexts['playing']='игра продолжается.'
+            gTexts['start']='Начало игры. Ваш ход.'
+            createField(3,3); // создание игрового поля
+        }
+    </script>
+
+    <title>Игра крестики нолики</title>
+</head>
+
+<body onload="initGame()">
+    <table width = '100%'>
+        <tr>
+            <td width = '50%'>
+                <span id = 'gameinfo'>Кликните по клетке, чтобы открыть ее.</span> <!-- сообщения игры -->
+            </td> <td width = "50%">
+            <form name="frnG" action="javascript:clkGameButton();">
+                Размер поля: <input type="text" name="nCells" value="8"
+                              title="Число клеток" size="3"> <!-- текстовое поле -->
+                <input type = 'button' value = 'Начать игру' onclick = 'clkGameButton();'> <!--кнопка начала игры-->
+            </form>
+            </td>
+        </tr>
+    </table>
+
+    <div id = 'game'></div>
+
+</body>
+</html>

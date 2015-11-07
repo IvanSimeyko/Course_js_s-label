@@ -1,0 +1,25 @@
+/* размер шрифта с идентификатором gameinfo */
+#gameinfo {
+    font-size: 110%;
+}
+
+/* описание стиля таблицы (идентификатор game table) */
+#game table{
+    /*окаемка таблицы*/
+    border: 3px groove deepskyblue;
+    /*фоновая картинка для игры*/
+    background-image: url("images/fon.jpg");
+}
+
+/* описание стиля одной ячейки где будет происходить игра*/
+#game table tr td{
+    /*описание обводки клетки*/
+    border: 1px dotted #eeb;
+    /*установка вида курсора, когда он наводится на ячейку*/
+    cursor: pointer;
+}
+
+/*подсветка клетки при наведении курсора*/
+#game table tr td: hover{
+    border: 1px solid #ffa;
+}
