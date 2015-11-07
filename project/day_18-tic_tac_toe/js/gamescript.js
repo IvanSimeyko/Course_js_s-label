@@ -15,7 +15,7 @@ var gField = [];    // игровое поле
 // задаем размер игрового поля
 function createField(w, h) {
     gField = new Array(w);    // создаем новый массив
-    console.log( gField )
+    console.log( gField ); 
     for ( i=0; i<w; i++ ) gField[i] = new Array(h);
     console.log(gField)
 }
