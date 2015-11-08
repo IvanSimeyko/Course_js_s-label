@@ -87,6 +87,29 @@ function isWin(){
 
 // функция компьютерного игрока, который сначала методом перебора проверяет все вариантыб
 //запуская isWin(), а ззатем делает ход, вызывая setCell(x, y, t)
+function CompGame() {    // искусственный интелект :)
+    var tx = null, ty = null, tp = 0;    //tp - приоритет выбранной целеврй клетки
+    var stX = 0, stY = 0;
+    for ( stX=0; stX<gField.length; stX++) for ( stY=0; stY<gField[0].length;
+    stY++)    //для каждой клетки
+    {
+        var lC = gField[stX][stY];
+        if ( (lC!='x') && (lC!='o')){    //только для пустых клеток
+            gField[stX][stY]='x';
+            if ( isWin()=='x' ) {    //пробуем победить
+                tx = stX; ty = stY; tp = 3;
+            } else if (tp<3) {
+                gField[stX][stY]='o';
+                if ( isWin()=='o' ) {    //пробуем помешать побудеить игроку
+                    tx = stX; ty=stY; tp=2;
 
-
-
+                } else if (tp<2) {    // или ...
+                    var mini = -1, maxi = 1, minj = -1, maxj = 1;    // определяем четыре переменные
+                    if (stX>=gField.length-1) maxi = 0; if (stY>=gField[0].length-1) maxj=0;
+                    if (stX<1) mini=0; if (stY<1) minj=0;
+                    // найти ближайший нолик...
+                }
+            }
+        }
+    }
+}

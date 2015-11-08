@@ -1,0 +1,1 @@
+systemJs.requier('main').init();
