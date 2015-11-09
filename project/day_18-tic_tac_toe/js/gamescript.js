@@ -108,8 +108,28 @@ function CompGame() {    // искусственный интелект :)
                     if (stX>=gField.length-1) maxi = 0; if (stY>=gField[0].length-1) maxj=0;
                     if (stX<1) mini=0; if (stY<1) minj=0;
                     // найти ближайший нолик...
+                    for ( i=mini; i<maxi; i++ ) for ( j=minj; j<maxj; j++ )
+                    if ( (i!=0) && (j!=0 ) ) {    //если есть своя занятая клетка - поближе к своим
+                        if (gField[stX+i][stY=j]=='o') {
+                            tx = stX; ty = stY;
+                            tp=1;
+                        }
+                    }
+                    if (tp<1) {    //или хотябы на свободную клеткупоставить
+                        tx = stX; ty = stY;
+                    }
                 }
             }
+            gField[stX][stY] = lC;
         }
     }
+    if ( (tx!= null )&&( ty!= null ) ) {    //если целевая клетка выбрана
+        setCell(tx, ty, 'o');    // поставимнолик в клетку
+    }
+}
+
+//пишем логику прокраммы. Вызываем функцию по кликуб передаем ей координаты х,у.
+//Вызываем isWin(), setCell(x,y,t) и CompGame(). Сообщаем информацию о победе.
+function onCellClk(x, y) {
+
 }
