@@ -128,8 +128,23 @@ function CompGame() {    // искусственный интелект :)
     }
 }
 
-//пишем логику прокраммы. Вызываем функцию по кликуб передаем ей координаты х,у.
+//пишем логику прокраммы. Вызываем функцию по клику передаем ей координаты х,у.
 //Вызываем isWin(), setCell(x,y,t) и CompGame(). Сообщаем информацию о победе.
-function onCellClk(x, y) {
-
+function onCellClk(x, y) {    // действия при клике на клетке
+    if ( gField[x][y] == null ) {    // если клетка пуста
+        var win = isWin();    // проверка на победу
+        if ( !win ) setCell(x,y, 'x');
+        win = isWin();    // проверка на победу
+        if ( !win ) {
+            CompGame();    //запуск компьютерного игрока
+            win = isWin();    //проверка на победу
+        }
+        if ( !win) {
+            gameinfo.innerText = gTexts['playing']   // отображение сообщения
+        } else {
+            var mes = gTexts['win1'] +win + gTexts['win2'];
+            alert( mes );    // отображение сообщения о победе
+            gameinfo.innerText = mes;
+        }
+    }
 }

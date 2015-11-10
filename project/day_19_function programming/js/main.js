@@ -76,3 +76,10 @@ function two() {
 function add(x, y) {
     return x + y
 }
+
+console.log(add(one(),two()));
+
+function add2(fn1, fn2){
+
+    return
+}
