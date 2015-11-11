@@ -42,9 +42,8 @@ function foo(a, b) {
 }
 
 var x = foo(3, 4);
-
-//x(); // 7
-//x(); // 7
+//console.log(x());
+//x(); //
 
 // рекурсия - функция, которая вызывыает саму себя. Место выхода, вызов самой себя
 //apply ???
@@ -65,10 +64,10 @@ function mult (x, y, z) {
 //Изменение списка -  map - возвращает новый массив
 //Исключение из списка
 // map, reduce, filter, for Each (методы массива) - спрашивают на собеседовании
+// упраженение 4
 function one(){
     return 1
 }
-
 function two() {
     return 2
 }
@@ -76,10 +75,30 @@ function two() {
 function add(x, y) {
     return x + y
 }
-
 console.log(add(one(),two()));
 
 function add2(fn1, fn2){
-
-    return
+    a = fn1();
+    b = fn2();
+    return add (a, b)
 }
+
+function returnValue(value){
+    //a = value;
+    return function() {
+        return value
+    }
+}
+
+var d = add3(5);
+console.log(d());
+
+function addn(list){
+    //var arrgs = [].slice.call(arguments);
+    var total = 0;
+    for (i=0; i<list.length; i++) {
+        total = add2(list[i], returnValue(total))
+    }
+}
+
+addn(3, 4);
