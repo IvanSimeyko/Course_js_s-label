@@ -82,6 +82,7 @@ function add2(fn1, fn2){
     b = fn2();
     return add (a, b)
 }
+console.log(add2(one, two));
 
 function returnValue(value){
     //a = value;
@@ -90,15 +91,26 @@ function returnValue(value){
     }
 }
 
-var d = add3(5);
+var d = returnValue(5);
 console.log(d());
 
-function addn(list){
+function addnLoop(list){
     //var arrgs = [].slice.call(arguments);
     var total = 0;
     for (i=0; i<list.length; i++) {
-        total = add2(list[i], returnValue(total))
+        total = add2(list[i], returnValue(total));
+   }
+    return total
+}
+console.log(addnLoop([one, two]));
+
+function addnRecur(list) {
+    var listCopy = [].slice.call(list);
+    console.log( listCopy[0] );
+    if (listCopy.length <= 2) {
+        return add2(listCopy[0], listCopy[1]);
     }
+    return addnRecur(listCopy[0], listCopy.slice(1));
 }
 
-addn(3, 4);
+console.log( addnRecur( [one, two]) );
